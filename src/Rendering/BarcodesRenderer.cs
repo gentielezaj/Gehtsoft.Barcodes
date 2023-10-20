@@ -110,12 +110,16 @@ namespace Gehtsoft.Barcodes.Rendering
                     separatorHeight = BarcodesUtils.GetSeparatorHeight(EANData.default_barcode_width_EAN_13 * scaleMultiplier, barcodeType);
                     leftQuiteZoneCount = EANData.left_quite_zone_count_EAN_13;
                     leftCodePartCount = 42;
-                    textDataLeft = textDataString.Substring(0, 6);
-                    textDataRight = textDataString.Substring(6, 6);
                     if (barcodeType == BarcodeType.UPC_A)
                     {
-                        textDataLeft = textDataLeft.Substring(1, 5);
-                        textDataRight = textDataRight.Substring(0, 5);
+                        textDataLeft = textDataString.Substring(1, 5);
+                        textDataRight = textDataString.Substring(6, 5);
+                    }
+                    else 
+                    {
+                        // escape fi
+                        textDataLeft = textDataString.Substring(1, 6);
+                        textDataRight = textDataString.Substring(7, 6);
                     }
                     break;
                 case BarcodeType.EAN_8:
